@@ -16,14 +16,20 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    private UUID usuarioId;
+    private UUID espacioId;
+
     private LocalDateTime fecha;
     private Integer tiempo;
     
     public Reserva() {
     }
 
-    public Reserva(UUID id, LocalDateTime fecha, Integer tiempo) {
+    public Reserva(UUID id, UUID usuarioId, UUID espacioId, LocalDateTime fecha, Integer tiempo) {
         this.id = id;
+        this.usuarioId = usuarioId;
+        this.espacioId = espacioId;
         this.fecha = fecha;
         this.tiempo = tiempo;
     }
@@ -52,6 +58,12 @@ public class Reserva {
         this.tiempo = tiempo;
     }
 
-    
+    public UUID getUsuarioId() {
+        return usuarioId;
+    }
+
+    public UUID getEspacioId() {
+        return espacioId;
+    }
 
 }

@@ -80,7 +80,15 @@ public class UsuarioServicio {
     public boolean eliminarUsuarioEnBD(UUID id){
         //validar que se envia un id y que existe en la base de datos
         //eliminar datos
-        return false;
+         Optional<Usuario> usuario_que_estoy_buscando=this.repositorioUsuario.findById(id);
+         if (!usuario_que_estoy_buscando.isPresent()) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "El usuario que quieres buscar, no se encuentra registrado en la BD"
+             );
+            }
+            this.repositorioUsuario.deleteById(id);
+
+            return true;
     }
 
     public List<Usuario> buscarUsuariosEnBD(){
